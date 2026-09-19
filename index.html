@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KBC News | Home</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Tahoma', 'Arial', sans-serif;
             background: #f4f4f4;
             color: #1e1e1e;
             line-height: 1.8;
-            direction: rtl;
+            direction: ltr;
         }
 
-        .container {
-            width: 92%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 15px 0;
-        }
+        .container { width: 92%; max-width: 1200px; margin: auto; padding: 15px 0; }
 
         header {
             background: #b80000;
@@ -40,11 +31,7 @@
             flex-wrap: wrap;
         }
 
-        .logo img {
-            height: 50px;
-            width: auto;
-            display: block;
-        }
+        .logo img { height: 50px; width: auto; display: block; }
 
         nav a {
             color: #fff;
@@ -57,9 +44,7 @@
             border-bottom: 2px solid transparent;
         }
 
-        nav a:hover {
-            border-bottom-color: #ffd700;
-        }
+        nav a:hover { border-bottom-color: #ffd700; }
 
         .featured {
             background: #fff;
@@ -81,22 +66,11 @@
             min-width: 200px;
         }
 
-        .featured .content {
-            flex: 2;
-            min-width: 200px;
-        }
+        .featured .content { flex: 2; min-width: 200px; direction: rtl; text-align: right; }
 
-        .featured .content h2 {
-            font-size: 26px;
-            color: #b80000;
-            margin-bottom: 8px;
-        }
+        .featured .content h2 { font-size: 24px; color: #b80000; margin-bottom: 8px; }
 
-        .featured .content p {
-            color: #444;
-            font-size: 15px;
-            font-weight: 300;
-        }
+        .featured .content p { color: #444; font-size: 15px; font-weight: 300; }
 
         .featured .content .tag {
             display: inline-block;
@@ -108,6 +82,16 @@
             border-radius: 30px;
             margin-bottom: 8px;
         }
+
+        .featured .content a {
+            color: #b80000;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .featured .content a:hover { border-bottom-color: #b80000; }
 
         .news-grid {
             display: grid;
@@ -123,12 +107,11 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
             transition: 0.3s;
             border-top: 4px solid #b80000;
+            direction: rtl;
+            text-align: right;
         }
 
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
+        .news-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
         .news-card img {
             width: 100%;
@@ -138,23 +121,19 @@
             margin-bottom: 10px;
         }
 
-        .news-card h3 {
-            font-size: 17px;
-            color: #1e1e1e;
-            margin-bottom: 4px;
+        .news-card h3 { font-size: 17px; color: #1e1e1e; margin-bottom: 4px; }
+        .news-card .date { color: #888; font-size: 12px; }
+        .news-card p { color: #555; font-size: 14px; font-weight: 300; margin-top: 6px; }
+        .news-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #b80000;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
         }
-
-        .news-card .date {
-            color: #888;
-            font-size: 12px;
-        }
-
-        .news-card p {
-            color: #555;
-            font-size: 14px;
-            font-weight: 300;
-            margin-top: 6px;
-        }
+        .news-card a:hover { border-bottom-color: #b80000; }
 
         footer {
             background: #1a1a1a;
@@ -165,41 +144,16 @@
             border-top: 4px solid #b80000;
         }
 
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
-            margin: 0 12px;
-            font-size: 14px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        footer .copy {
-            margin-top: 12px;
-            color: #888;
-            font-size: 13px;
-        }
+        footer a { color: #ffd700; text-decoration: none; margin: 0 12px; font-size: 14px; }
+        footer a:hover { text-decoration: underline; }
+        footer .copy { margin-top: 12px; color: #888; font-size: 13px; }
 
         @media (max-width: 750px) {
-            header .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav {
-                margin-top: 12px;
-            }
-            nav a {
-                margin: 0 6px;
-                font-size: 13px;
-            }
-            .featured {
-                flex-direction: column;
-            }
-            .featured img {
-                max-width: 100%;
-            }
+            header .container { flex-direction: column; text-align: center; }
+            nav { margin-top: 12px; }
+            nav a { margin: 0 6px; font-size: 13px; }
+            .featured { flex-direction: column; }
+            .featured img { max-width: 100%; }
         }
     </style>
 </head>
@@ -211,7 +165,7 @@
             <img src="https://cdn.imgurl.ir/uploads/b084814_InShot_20260901_135253984.png" alt="KBC News Logo" />
         </div>
         <nav>
-            <a href="#">Home</a>
+            <a href="index.html">Home</a>
             <a href="#">World</a>
             <a href="#">Politics</a>
             <a href="#">Economy</a>
@@ -224,36 +178,26 @@
 
 <main class="container">
 
-    <!-- ====== خبر ویژه (Featured) ====== -->
-<section class="featured">
-    <img src="https://cdn.imgurl.ir/uploads/i618626_InShot_20260901_134730704.jpg" alt="خبر ویژه" />
-    <div class="content">
-        <span class="tag">Breaking News</span>
-        <h2>ژنرال مورگان به عنوان رئیس کل سپاه پاسداران کادریا منصوب شد</h2>
-        <p>طبق اعلام رسمی مقامات کادریا، ژنرال دکستر مورگان به عنوان رئیس کل سپاه پاسداران منصوب شد. این اقدام در شرایط کنونی برای مقابله با رحمان و حمایت از عملیات کوبش انجام شده است.</p>
-        <div style="color: #888; font-size: 13px; margin-top: 8px;">لحظات پیش</div>
-        <a href="Post.html" style="display: inline-block; margin-top: 12px; color: #b80000; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; transition: 0.3s;" onmouseover="this.style.borderBottomColor='#b80000'" onmouseout="this.style.borderBottomColor='transparent'">مشاهده کامل خبر →</a>
-    </div>
-</section>
+    <!-- Featured News (New - Tehran) -->
+    <section class="featured">
+        <img src="https://cdn.imgurl.ir/uploads/x04750_InShot_20260919_180544407.jpg" alt="Red Alert" />
+        <div class="content">
+            <span class="tag">Breaking News</span>
+            <h2>وضعیت قرمز در هیاهوی آغاز سال تحصیلی</h2>
+            <p>در حالی که سال تحصیلی جدید در حال آغاز شدن است، تنش‌ها میان کوبشگران و رحمان شدید شده و احتمال درگیری گسترده در روزهای آتی بسیار بالاست.</p>
+            <div style="color: #888; font-size: 13px; margin-top: 8px;">19 September 2026 — Moments ago</div>
+            <a href="Post2.html" style="display: inline-block; margin-top: 12px;">Read Full Story →</a>
+        </div>
+    </section>
 
+    <!-- News Grid -->
     <section class="news-grid">
         <div class="news-card">
-            <img src="https://cdn.imgurl.ir/uploads/r82351_InShot_20260803_123724302.jpg" alt="News" />
-            <h3>عنوان خبر به فارسی</h3>
-            <div class="date">2 hours ago</div>
-            <p>خلاصه کوتاه از خبر که در دو خط نمایش داده می‌شود.</p>
-        </div>
-        <div class="news-card">
-            <img src="https://cdn.imgurl.ir/uploads/r82351_InShot_20260803_123724302.jpg" alt="News" />
-            <h3>عنوان خبر به فارسی</h3>
-            <div class="date">5 hours ago</div>
-            <p>خلاصه کوتاه از خبر که در دو خط نمایش داده می‌شود.</p>
-        </div>
-        <div class="news-card">
-            <img src="https://cdn.imgurl.ir/uploads/r82351_InShot_20260803_123724302.jpg" alt="News" />
-            <h3>عنوان خبر به فارسی</h3>
-            <div class="date">8 hours ago</div>
-            <p>خلاصه کوتاه از خبر که در دو خط نمایش داده می‌شود.</p>
+            <img src="https://cdn.imgurl.ir/uploads/i618626_InShot_20260901_134730704.jpg" alt="Morgan" />
+            <h3>ژنرال مورگان به عنوان رئیس کل سپاه پاسداران کادریا منصوب شد</h3>
+            <div class="date">1 September 2026</div>
+            <p>طبق اعلام رسمی مقامات کادریا، ژنرال دکستر مورگان به عنوان رئیس کل سپاه پاسداران منصوب شد. این اقدام برای مقابله با رحمان و حمایت از عملیات کوبش انجام شده است.</p>
+            <a href="Post.html">Read More →</a>
         </div>
     </section>
 
