@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KBC News | End of Operation Kobesh</title>
     <style>
+        @font-face {
+            font-family: 'BBCNassim';
+            src: url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/normal.woff') format('woff'),
+                 url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/normal.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'BBCNassim';
+            src: url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/bold.woff') format('woff'),
+                 url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Tahoma', 'Arial', sans-serif;
+            font-family: 'BBCNassim', 'Tahoma', 'Arial', sans-serif;
             background: #f4f4f4;
             color: #1e1e1e;
             line-height: 1.8;
@@ -22,188 +39,130 @@
             color: #fff;
             padding: 12px 0;
             border-bottom: 4px solid #9a0000;
+            position: relative;
+            z-index: 1000;
         }
-
         header .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
             max-width: 1200px;
         }
-
         .logo img { height: 45px; width: auto; display: block; }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-            font-size: 14px;
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
             transition: 0.3s;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
+            display: block;
+            order: -1;
+        }
+        .menu-icon:hover { transform: scale(1.1); }
+
+        .side-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.15);
+            padding: 20px 0;
+            transform: translateX(-100%);
+            transition: 0.35s ease;
+            z-index: 999;
+            border-right: 3px solid #b80000;
+        }
+        .side-menu.open { transform: translateX(0); }
+        .side-menu a {
+            display: block;
+            padding: 12px 24px;
+            color: #1e1e1e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+            border-right: 3px solid transparent;
+        }
+        .side-menu a:hover {
+            background: #fff0f0;
+            color: #b80000;
+            border-right-color: #b80000;
+        }
+        .side-menu .menu-title {
+            padding: 8px 24px;
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 8px;
         }
 
-        nav a:hover { border-bottom-color: #ffd700; }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 998;
+        }
+        .overlay.show { opacity: 1; pointer-events: auto; }
 
         .post {
             background: #fff;
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 8px;
+            padding: 30px 40px;
             margin: 25px 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         .post .tag {
             display: inline-block;
             background: #b80000;
             color: #fff;
             font-size: 11px;
             font-weight: 700;
-            padding: 2px 14px;
-            border-radius: 30px;
-            margin-bottom: 10px;
+            padding: 2px 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
         .post h1 {
-            font-size: 30px;
+            font-size: 34px;
             color: #1e1e1e;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             direction: rtl;
             text-align: right;
+            line-height: 1.4;
+            font-weight: 800;
         }
-
         .post .meta {
             color: #888;
             font-size: 13px;
-            margin-bottom: 16px;
+            margin-bottom: 25px;
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
             direction: rtl;
             justify-content: flex-end;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
         }
-
         .post img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            margin: 16px 0;
+            border-radius: 8px;
+            margin: 20px 0;
         }
-
         .post p {
-            color: #2c3e50;
-            font-size: 16px;
-            font-weight: 300;
-            line-height: 1.9;
-            margin-bottom: 16px;
-            direction: rtl;
-            text-align: right;
-        }
-
-        .post .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #b80000;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s;
-        }
-
-        .post .back-link:hover { border-bottom-color: #b80000; }
-
-        footer {
-            background: #1a1a1a;
-            color: #ccc;
-            text-align: center;
-            padding: 28px 0 18px;
-            margin-top: 40px;
-            border-top: 4px solid #b80000;
-        }
-
-        footer a { color: #ffd700; text-decoration: none; margin: 0 12px; font-size: 14px; }
-        footer .copy { margin-top: 12px; color: #888; font-size: 13px; }
-
-        @media (max-width: 750px) {
-            header .container { flex-direction: column; text-align: center; }
-            nav { margin-top: 12px; }
-            nav a { margin: 0 6px; font-size: 13px; }
-            .post h1 { font-size: 22px; }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="container">
-        <div class="logo">
-            <img src="https://cdn.imgurl.ir/uploads/b084814_InShot_20260901_135253984.png" alt="KBC News Logo" />
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#">World</a>
-            <a href="#">Politics</a>
-            <a href="#">Economy</a>
-            <a href="#">Tech</a>
-            <a href="#">Sports</a>
-            <a href="#">Culture</a>
-        </nav>
-    </div>
-</header>
-
-<main class="container">
-
-    <article class="post">
-        <span class="tag">Breaking News</span>
-        <h1>پایان عملیات کوبش؛ توافق تاریخی میان کوبشگران و رحمان</h1>
-        <div class="meta">
-            <span>📅 8 October 2026</span>
-            <span>✍️ KBC News</span>
-            <span>🕒 Moments ago</span>
-        </div>
-
-        <img src="https://cdn.imgurl.ir/uploads/r049901_InShot_20261010_230834228.jpg" alt="End of Operation Kobesh" />
-
-        <p>
-            پس از ۲۵۲ روز تنش، درگیری و روزهای پرالتهاب میان رحمان و کوبشگران، سرانجام این اختلاف طولانی‌مدت به پایان رسید و دو طرف با امضای توافقی رسمی، به این فصل پرتنش پایان دادند.
-        </p>
-
-        <p>
-            در طول این ۲۵۲ روز، منطقه شاهد یکی از پرتنش‌ترین دوره‌های خود در سال‌های اخیر بود. فشارهای مستمر و تحولات میدانی، فضای سیاسی و امنیتی منطقه را به شدت تحت تأثیر قرار داده بود. با این حال، تحولات اخیر نشان داد که دو طرف در نهایت مسیر گفتگو و مذاکره را بر ادامه‌ی رویارویی ترجیح داده‌اند.
-        </p>
-
-        <p>
-            بر اساس گزارش‌های رسیده، رحمان و کوبشگران با برگزاری نشستی مشترک و دست دادن، پایان رسمی این درگیری را اعلام کردند. این اقدام که با استقبال ناظران بین‌المللی مواجه شده، نشان‌دهنده‌ی آغاز فصل جدیدی در روابط دو طرف است.
-        </p>
-
-        <p>
-            با اعلام رسمی پایان این عملیات، دیگر خبری از ادامه‌ی درگیری‌ها، تنش‌ها و عملیات‌های نظامی در منطقه نیست. تحلیلگران معتقدند که این توافق می‌تواند زمینه‌ساز ثبات پایدار و کاهش تنش‌ها در سطح منطقه باشد.
-        </p>
-
-        <p>
-            این توافق که در تاریخ ۸ اکتبر ۲۰۲۶ به امضا رسید، به عنوان نقطه‌ی عطفی در تحولات اخیر منطقه ثبت خواهد شد و چشم‌انداز جدیدی را برای همکاری‌های آینده ترسیم می‌کند.
-        </p>
-
-        <a href="index.html" class="back-link">← Back to Home</a>
-    </article>
-
-</main>
-
-<footer>
-    <div class="container">
-        <div>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-        </div>
-        <div class="copy">
-            © 2026 KBC News - All Rights Reserved.
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+            color: #333;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 2
