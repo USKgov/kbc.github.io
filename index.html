@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KBC News | Home</title>
     <style>
-        /* ====== فونت BBC Nassim ====== */
         @font-face {
             font-family: 'BBCNassim';
             src: url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/normal.woff') format('woff'),
@@ -35,12 +35,12 @@
 
         .container { width: 92%; max-width: 1200px; margin: auto; padding: 15px 0; }
 
-        /* ====== هدر ====== */
+        /* ====== هدر نازک‌تر ====== */
         header {
             background: #b80000;
             color: #fff;
-            padding: 12px 0;
-            border-bottom: 4px solid #9a0000;
+            padding: 6px 0;
+            border-bottom: 3px solid #9a0000;
             position: relative;
             z-index: 1000;
         }
@@ -48,27 +48,42 @@
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
             max-width: 1200px;
+            min-height: 40px;
         }
 
-        .logo img { height: 50px; width: auto; display: block; }
+        /* ====== لوگوی وسط‌چین ====== */
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        /* ====== آیکون سه‌خط ====== */
+        .logo img {
+            height: 35px;
+            width: auto;
+            display: block;
+        }
+
+        /* ====== آیکون سه‌خط (چپ هدر) ====== */
         .menu-icon {
-            width: 40px;
-            height: 40px;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
             cursor: pointer;
             transition: 0.3s;
-            display: block;
-            order: -1;
         }
-        .menu-icon:hover { transform: scale(1.1); }
+        .menu-icon:hover { transform: translateY(-50%) scale(1.1); }
 
         /* ====== منوی کشویی ====== */
         .side-menu {
             position: fixed;
-            top: 70px;
+            top: 60px;
             left: 0;
             width: 240px;
             background: #ffffff;
@@ -227,11 +242,11 @@
         footer .copy { margin-top: 12px; color: #888; font-size: 13px; }
 
         @media (max-width: 750px) {
-            header .container { flex-direction: row; text-align: left; }
             .featured { flex-direction: column; }
             .featured img { max-width: 100%; }
             .featured .content h2 { font-size: 20px; }
             .news-grid { grid-template-columns: 1fr; }
+            .logo img { height: 30px; }
         }
     </style>
 </head>
@@ -296,14 +311,14 @@
 
 </main>
 
-<!-- ====== دکمه اشتراک‌گذاری ====== -->
-<div style="width: 100%; display: flex; justify-content: center; padding: 20px 0; margin: 10px 0;">
+<!-- ====== دکمه اشتراک‌گذاری (عرض کامل) ====== -->
+<div style="width: 100%; display: flex; justify-content: center; padding: 10px 0; margin: 5px 0;">
     <img 
         src="https://cdn.imgurl.ir/uploads/o5269_.png" 
         alt="Share with your friends" 
         onclick="shareSite()"
-        style="width: 80%; height: auto; max-height: 80px; object-fit: contain; cursor: pointer; transition: 0.3s; border-radius: 10px;" 
-        onmouseover="this.style.transform='scale(1.03)'; this.style.filter='brightness(1.1)';" 
+        style="width: 100%; height: auto; max-height: 120px; object-fit: contain; cursor: pointer; transition: 0.3s; border-radius: 8px;" 
+        onmouseover="this.style.transform='scale(1.02)'; this.style.filter='brightness(1.1)';" 
         onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';"
     />
 </div>
@@ -329,43 +344,27 @@
 </footer>
 
 <script>
-    // ====== منوی کشویی ======
     function toggleMenu(e) {
         e.stopPropagation();
         const menu = document.getElementById('sideMenu');
         const overlay = document.getElementById('overlay');
-        if (menu.classList.contains('open')) {
-            closeMenu();
-        } else {
-            menu.classList.add('open');
-            overlay.classList.add('show');
-        }
+        if (menu.classList.contains('open')) { closeMenu(); }
+        else { menu.classList.add('open'); overlay.classList.add('show'); }
     }
     function closeMenu() {
         document.getElementById('sideMenu').classList.remove('open');
         document.getElementById('overlay').classList.remove('show');
     }
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-    // ====== اشتراک‌گذاری ======
     function shareSite() {
         const url = window.location.origin;
         if (navigator.share) {
-            navigator.share({
-                title: 'KBC News',
-                text: 'Check out KBC News!',
-                url: url
-            }).catch(() => copyToClipboard(url));
-        } else {
-            copyToClipboard(url);
-        }
+            navigator.share({ title: 'KBC News', text: 'Check out KBC News!', url: url }).catch(() => copyToClipboard(url));
+        } else { copyToClipboard(url); }
     }
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            showToast();
-        }).catch(() => {
+        navigator.clipboard.writeText(text).then(() => { showToast(); }).catch(() => {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             document.body.appendChild(textarea);
