@@ -37,32 +37,39 @@
         header {
             background: #b80000;
             color: #fff;
-            padding: 12px 0;
-            border-bottom: 4px solid #9a0000;
+            padding: 6px 0;
+            border-bottom: 3px solid #9a0000;
             position: relative;
             z-index: 1000;
         }
+
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
             max-width: 1200px;
+            min-height: 45px;
         }
-        .logo img { height: 45px; width: auto; display: block; }
+
+        .logo { display: flex; justify-content: center; align-items: center; }
+        .logo img { height: 35px; width: auto; display: block; }
 
         .menu-icon {
-            width: 40px;
-            height: 40px;
+            position: absolute;
+            left: 8px;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
             cursor: pointer;
             transition: 0.3s;
-            display: block;
-            order: -1;
         }
-        .menu-icon:hover { transform: scale(1.1); }
+        .menu-icon:hover { transform: translateY(-50%) scale(1.1); }
 
         .side-menu {
             position: fixed;
-            top: 70px;
+            top: 60px;
             left: 0;
             width: 240px;
             background: #ffffff;
@@ -155,12 +162,7 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 15px;
         }
-        .post img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
+        .post img { width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
         .post p {
             color: #333;
             font-size: 17px;
@@ -197,6 +199,8 @@
             .post { padding: 20px 20px; }
             .post h1 { font-size: 26px; }
             .post p { font-size: 16px; }
+            .logo img { height: 30px; }
+            .menu-icon { width: 40px; height: 40px; left: 5px; }
         }
     </style>
 </head>
@@ -257,17 +261,6 @@
 
 </main>
 
-<div style="width: 100%; display: flex; justify-content: center; padding: 20px 0; margin: 10px 0;">
-    <img src="https://cdn.imgurl.ir/uploads/o5269_.png" alt="Share with your friends" onclick="shareSite()"
-        style="width: 80%; height: auto; max-height: 80px; object-fit: contain; cursor: pointer; transition: 0.3s; border-radius: 10px;"
-        onmouseover="this.style.transform='scale(1.03)'; this.style.filter='brightness(1.1)';"
-        onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';" />
-</div>
-
-<div id="shareToast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #b80000; color: #fff; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 20px rgba(184, 0, 0, 0.4); opacity: 0; transition: 0.4s ease; z-index: 9999; pointer-events: none; font-family: Tahoma;">
-    ✅ Link copied! Share it with your friends
-</div>
-
 <footer>
     <div class="container">
         <div>
@@ -295,33 +288,6 @@
         document.getElementById('overlay').classList.remove('show');
     }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-
-    function shareSite() {
-        const url = window.location.origin;
-        if (navigator.share) {
-            navigator.share({ title: 'KBC News', text: 'Check out KBC News!', url: url }).catch(() => copyToClipboard(url));
-        } else { copyToClipboard(url); }
-    }
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => { showToast(); }).catch(() => {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            showToast();
-        });
-    }
-    function showToast() {
-        const toast = document.getElementById('shareToast');
-        toast.style.opacity = '1';
-        toast.style.transform = 'translateX(-50%) translateY(0)';
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(100px)';
-        }, 2500);
-    }
 </script>
 
 </body>
