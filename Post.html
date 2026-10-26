@@ -1,129 +1,185 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KBC News | ژنرال مورگان رئیس کل سپاه شد</title>
+    <title>KBC News | General Morgan</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @font-face {
+            font-family: 'BBCNassim';
+            src: url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/normal.woff') format('woff'),
+                 url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/normal.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
         }
+        @font-face {
+            font-family: 'BBCNassim';
+            src: url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/bold.woff') format('woff'),
+                 url('https://ws-downloads.files.bbci.co.uk/fonts/NassimPersian/v1.511/bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Tahoma', 'Arial', sans-serif;
+            font-family: 'BBCNassim', 'Tahoma', 'Arial', sans-serif;
             background: #f4f4f4;
             color: #1e1e1e;
-            line-height: 1.9;
-            direction: rtl;
+            line-height: 1.8;
+            direction: ltr;
         }
 
-        .container {
-            width: 92%;
-            max-width: 800px;
-            margin: auto;
-            padding: 15px 0;
-        }
+        .container { width: 92%; max-width: 800px; margin: auto; padding: 15px 0; }
 
         header {
             background: #b80000;
             color: #fff;
             padding: 12px 0;
             border-bottom: 4px solid #9a0000;
+            position: relative;
+            z-index: 1000;
         }
-
         header .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
             max-width: 1200px;
         }
+        .logo img { height: 45px; width: auto; display: block; }
 
-        .logo img {
-            height: 45px;
-            width: auto;
-            display: block;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-            font-size: 14px;
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
             transition: 0.3s;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
+            display: block;
+            order: -1;
+        }
+        .menu-icon:hover { transform: scale(1.1); }
+
+        .side-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.15);
+            padding: 20px 0;
+            transform: translateX(-100%);
+            transition: 0.35s ease;
+            z-index: 999;
+            border-right: 3px solid #b80000;
+        }
+        .side-menu.open { transform: translateX(0); }
+        .side-menu a {
+            display: block;
+            padding: 12px 24px;
+            color: #1e1e1e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+            border-right: 3px solid transparent;
+        }
+        .side-menu a:hover {
+            background: #fff0f0;
+            color: #b80000;
+            border-right-color: #b80000;
+        }
+        .side-menu .menu-title {
+            padding: 8px 24px;
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 8px;
         }
 
-        nav a:hover {
-            border-bottom-color: #ffd700;
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 998;
         }
+        .overlay.show { opacity: 1; pointer-events: auto; }
 
         .post {
             background: #fff;
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 8px;
+            padding: 30px 40px;
             margin: 25px 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         .post .tag {
             display: inline-block;
             background: #b80000;
             color: #fff;
             font-size: 11px;
             font-weight: 700;
-            padding: 2px 14px;
-            border-radius: 30px;
-            margin-bottom: 10px;
+            padding: 2px 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
         .post h1 {
-            font-size: 32px;
+            font-size: 34px;
             color: #1e1e1e;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.4;
+            font-weight: 800;
         }
-
         .post .meta {
             color: #888;
             font-size: 13px;
-            margin-bottom: 16px;
+            margin-bottom: 25px;
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            direction: rtl;
+            justify-content: flex-end;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
         }
-
         .post img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            margin: 16px 0;
+            border-radius: 8px;
+            margin: 20px 0;
         }
-
         .post p {
-            color: #2c3e50;
-            font-size: 16px;
-            font-weight: 300;
-            line-height: 1.9;
-            margin-bottom: 16px;
+            color: #333;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 2;
+            margin-bottom: 20px;
+            direction: rtl;
+            text-align: right;
         }
-
         .post .back-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 30px;
             color: #b80000;
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 2px solid transparent;
+            border-bottom: 1px solid transparent;
             transition: 0.3s;
         }
-
-        .post .back-link:hover {
-            border-bottom-color: #b80000;
-        }
+        .post .back-link:hover { border-bottom-color: #b80000; }
 
         footer {
             background: #1a1a1a;
@@ -133,39 +189,14 @@
             margin-top: 40px;
             border-top: 4px solid #b80000;
         }
-
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
-            margin: 0 12px;
-            font-size: 14px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        footer .copy {
-            margin-top: 12px;
-            color: #888;
-            font-size: 13px;
-        }
+        footer a { color: #ffd700; text-decoration: none; margin: 0 12px; font-size: 14px; }
+        footer a:hover { text-decoration: underline; }
+        footer .copy { margin-top: 12px; color: #888; font-size: 13px; }
 
         @media (max-width: 750px) {
-            header .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav {
-                margin-top: 12px;
-            }
-            nav a {
-                margin: 0 6px;
-                font-size: 13px;
-            }
-            .post h1 {
-                font-size: 24px;
-            }
+            .post { padding: 20px 20px; }
+            .post h1 { font-size: 26px; }
+            .post p { font-size: 16px; }
         }
     </style>
 </head>
@@ -173,20 +204,25 @@
 
 <header>
     <div class="container">
+        <img src="https://cdn.imgurl.ir/uploads/f048976_.png" alt="Menu" class="menu-icon" onclick="toggleMenu(event)" />
         <div class="logo">
             <img src="https://cdn.imgurl.ir/uploads/b084814_InShot_20260901_135253984.png" alt="KBC News Logo" />
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#">World</a>
-            <a href="#">Politics</a>
-            <a href="#">Economy</a>
-            <a href="#">Tech</a>
-            <a href="#">Sports</a>
-            <a href="#">Culture</a>
-        </nav>
     </div>
 </header>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<nav class="side-menu" id="sideMenu">
+    <div class="menu-title">Categories</div>
+    <a href="index.html">🏠 Home</a>
+    <a href="#">🌍 World</a>
+    <a href="#">🏛️ Politics</a>
+    <a href="#">💰 Economy</a>
+    <a href="#">💻 Tech</a>
+    <a href="#">⚽ Sports</a>
+    <a href="#">🎭 Culture</a>
+</nav>
 
 <main class="container">
 
@@ -194,37 +230,43 @@
         <span class="tag">Breaking News</span>
         <h1>ژنرال مورگان به عنوان رئیس کل سپاه پاسداران کادریا منصوب شد</h1>
         <div class="meta">
-            <span>📅 ۱ سپتامبر ۲۰۲۶</span>
-            <span>✍️ نویسنده: خبرگزاری KBC</span>
-            <span>🕒 لحظات پیش</span>
+            <span>📅 1 September 2026</span>
+            <span>✍️ KBC News</span>
         </div>
 
-        <img src="https://cdn.imgurl.ir/uploads/i618626_InShot_20260901_134730704.jpg" alt="ژنرال دکستر مورگان" />
+        <img src="https://cdn.imgurl.ir/uploads/i618626_InShot_20260901_134730704.jpg" alt="General Morgan" />
 
         <p>
             طبق اعلام رسمی مقامات عالی‌رتبه‌ی ایالات متحده کادریا، <strong>ژنرال دکستر مورگان</strong> به عنوان <strong>رئیس کل سپاه پاسداران ایالات متحده کادریا</strong> منصوب شد.
         </p>
-
         <p>
             این انتصاب که در پی تصویب شورای عالی راهبردی و با تأکید بر ضرورت ایجاد یک ساختار منسجم دفاعی صورت گرفته، نشان‌دهنده‌ی عزم جدی کادریا برای مقابله با تهدیدات فرامنطقه‌ای، به ویژه <strong>نفوذ رحمان مفسد</strong> و شبکه‌های وابسته به او، است.
         </p>
-
         <p>
             بر اساس این گزارش، سپاه پاسداران ایالات متحده کادریا به عنوان یک نهاد نظامی-امنیتی مستقل، با مأموریت حفاظت از دستاوردهای انقلاب و پشتیبانی از <strong>عملیات کوبش</strong> در راستای تأمین امنیت پایدار منطقه، فعالیت خود را آغاز خواهد کرد.
         </p>
-
         <p>
             ژنرال مورگان، از چهره‌های کلیدی نیروهای مسلح کادریا، در نخستین اظهارات خود پس از این انتصاب، بر تقویت همکاری‌های نظامی با ائتلاف‌های متحد و ارتقای توان رزمی سپاه برای رویارویی با هرگونه تهدید تأکید کرد.
         </p>
-
         <p>
             این اقدام در شرایطی صورت می‌گیرد که رحمان مفسد، با استفاده از شبکه‌های مالی و نظامی خود، ثبات منطقه را به مخاطره انداخته و عملیات کوبش به عنوان بزرگ‌ترین کارزار مقابله با او، نیازمند پشتیبانی همه‌جانبه‌ی نهادهای دفاعی و امنیتی است.
         </p>
 
-        <a href="index.html" class="back-link">← بازگشت به صفحه اصلی</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
     </article>
 
 </main>
+
+<div style="width: 100%; display: flex; justify-content: center; padding: 20px 0; margin: 10px 0;">
+    <img src="https://cdn.imgurl.ir/uploads/o5269_.png" alt="Share with your friends" onclick="shareSite()"
+        style="width: 80%; height: auto; max-height: 80px; object-fit: contain; cursor: pointer; transition: 0.3s; border-radius: 10px;"
+        onmouseover="this.style.transform='scale(1.03)'; this.style.filter='brightness(1.1)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';" />
+</div>
+
+<div id="shareToast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #b80000; color: #fff; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 20px rgba(184, 0, 0, 0.4); opacity: 0; transition: 0.4s ease; z-index: 9999; pointer-events: none; font-family: Tahoma;">
+    ✅ Link copied! Share it with your friends
+</div>
 
 <footer>
     <div class="container">
@@ -239,6 +281,48 @@
         </div>
     </div>
 </footer>
+
+<script>
+    function toggleMenu(e) {
+        e.stopPropagation();
+        const menu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+        if (menu.classList.contains('open')) { closeMenu(); }
+        else { menu.classList.add('open'); overlay.classList.add('show'); }
+    }
+    function closeMenu() {
+        document.getElementById('sideMenu').classList.remove('open');
+        document.getElementById('overlay').classList.remove('show');
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    function shareSite() {
+        const url = window.location.origin;
+        if (navigator.share) {
+            navigator.share({ title: 'KBC News', text: 'Check out KBC News!', url: url }).catch(() => copyToClipboard(url));
+        } else { copyToClipboard(url); }
+    }
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => { showToast(); }).catch(() => {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast();
+        });
+    }
+    function showToast() {
+        const toast = document.getElementById('shareToast');
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(100px)';
+        }, 2500);
+    }
+</script>
 
 </body>
 </html>
