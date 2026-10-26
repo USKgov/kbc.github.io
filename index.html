@@ -34,7 +34,6 @@
 
         .container { width: 92%; max-width: 1200px; margin: auto; padding: 15px 0; }
 
-        /* ====== هدر نازک ====== */
         header {
             background: #b80000;
             color: #fff;
@@ -50,10 +49,9 @@
             justify-content: center;
             position: relative;
             max-width: 1200px;
-            min-height: 40px;
+            min-height: 45px;
         }
 
-        /* ====== لوگوی وسط‌چین ====== */
         .logo {
             display: flex;
             justify-content: center;
@@ -66,11 +64,11 @@
             display: block;
         }
 
-        /* ====== آیکون سه‌خط بزرگ‌تر و چپ‌تر ====== */
+        /* ====== آیکون سه‌خط پایین‌تر و هم‌تراز با لوگو ====== */
         .menu-icon {
             position: absolute;
             left: 8px;
-            top: 50%;
+            top: 55%;
             transform: translateY(-50%);
             width: 45px;
             height: 45px;
@@ -79,10 +77,9 @@
         }
         .menu-icon:hover { transform: translateY(-50%) scale(1.1); }
 
-        /* ====== منوی کشویی ====== */
         .side-menu {
             position: fixed;
-            top: 55px;
+            top: 60px;
             left: 0;
             width: 240px;
             background: #ffffff;
@@ -120,7 +117,6 @@
             margin-bottom: 8px;
         }
 
-        /* ====== لایه تاریک ====== */
         .overlay {
             position: fixed;
             top: 0; left: 0;
@@ -133,7 +129,6 @@
         }
         .overlay.show { opacity: 1; pointer-events: auto; }
 
-        /* ====== خبر ویژه ====== */
         .featured {
             background: #fff;
             border-radius: 8px;
@@ -185,7 +180,6 @@
         }
         .featured .content a:hover { border-bottom-color: #b80000; }
 
-        /* ====== شبکه خبری ====== */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -227,7 +221,6 @@
         }
         .news-card a:hover { border-bottom-color: #b80000; }
 
-        /* ====== فوتر ====== */
         footer {
             background: #1a1a1a;
             color: #ccc;
@@ -246,13 +239,12 @@
             .featured .content h2 { font-size: 20px; }
             .news-grid { grid-template-columns: 1fr; }
             .logo img { height: 30px; }
-            .menu-icon { width: 40px; height: 40px; left: 5px; }
+            .menu-icon { width: 40px; height: 40px; left: 5px; top: 55%; }
         }
     </style>
 </head>
 <body>
 
-<!-- ====== هدر ====== -->
 <header>
     <div class="container">
         <img src="https://cdn.imgurl.ir/uploads/f048976_.png" alt="Menu" class="menu-icon" onclick="toggleMenu(event)" />
@@ -262,10 +254,8 @@
     </div>
 </header>
 
-<!-- ====== لایه تاریک ====== -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- ====== منوی کشویی ====== -->
 <nav class="side-menu" id="sideMenu">
     <div class="menu-title">Categories</div>
     <a href="index.html">🏠 Home</a>
@@ -279,7 +269,6 @@
 
 <main class="container">
 
-    <!-- ====== خبر ویژه ====== -->
     <section class="featured">
         <img src="https://cdn.imgurl.ir/uploads/r049901_InShot_20261010_230834228.jpg" alt="End of Kobesh" />
         <div class="content">
@@ -291,7 +280,6 @@
         </div>
     </section>
 
-    <!-- ====== شبکه خبری ====== -->
     <section class="news-grid">
         <div class="news-card">
             <img src="https://cdn.imgurl.ir/uploads/x04750_InShot_20260919_180544407.jpg" alt="Red Alert" />
@@ -311,7 +299,7 @@
 
 </main>
 
-<!-- ====== دکمه اشتراک‌گذاری (خود عکس بزرگ‌تر) ====== -->
+<!-- ====== دکمه اشتراک‌گذاری (فقط در صفحه اصلی) ====== -->
 <div style="width: 100%; display: flex; justify-content: center; padding: 10px 0; margin: 5px 0;">
     <img 
         src="https://cdn.imgurl.ir/uploads/o5269_.png" 
@@ -328,7 +316,6 @@
     ✅ Link copied! Share it with your friends
 </div>
 
-<!-- ====== فوتر ====== -->
 <footer>
     <div class="container">
         <div>
