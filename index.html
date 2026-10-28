@@ -34,101 +34,36 @@
 
         .container { width: 92%; max-width: 1200px; margin: auto; padding: 15px 0; }
 
+        /* ====== هدر با منوی افقی (حالت اولیه) ====== */
         header {
             background: #b80000;
             color: #fff;
-            padding: 6px 0;
-            border-bottom: 3px solid #9a0000;
-            position: relative;
-            z-index: 1000;
+            padding: 10px 0;
+            border-bottom: 4px solid #9a0000;
         }
 
         header .container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            max-width: 1200px;
-            min-height: 45px;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .logo img { height: 45px; width: auto; display: block; }
 
-        .logo img {
-            height: 35px;
-            width: auto;
-            display: block;
-        }
-
-        /* ====== آیکون سه‌خط پایین‌تر و هم‌تراز با لوگو ====== */
-        .menu-icon {
-            position: absolute;
-            left: 8px;
-            top: 55%;
-            transform: translateY(-50%);
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .menu-icon:hover { transform: translateY(-50%) scale(1.1); }
-
-        .side-menu {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            width: 240px;
-            background: #ffffff;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 4px 4px 20px rgba(0,0,0,0.15);
-            padding: 20px 0;
-            transform: translateX(-100%);
-            transition: 0.35s ease;
-            z-index: 999;
-            border-right: 3px solid #b80000;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu a {
-            display: block;
-            padding: 12px 24px;
-            color: #1e1e1e;
+        nav a {
+            color: #fff;
             text-decoration: none;
+            margin: 0 12px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             transition: 0.3s;
-            border-right: 3px solid transparent;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
         }
-        .side-menu a:hover {
-            background: #fff0f0;
-            color: #b80000;
-            border-right-color: #b80000;
-        }
-        .side-menu .menu-title {
-            padding: 8px 24px;
-            font-size: 12px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 8px;
-        }
+        nav a:hover { border-bottom-color: #ffd700; }
 
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3);
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
-            z-index: 998;
-        }
-        .overlay.show { opacity: 1; pointer-events: auto; }
-
+        /* ====== خبر ویژه ====== */
         .featured {
             background: #fff;
             border-radius: 8px;
@@ -180,6 +115,7 @@
         }
         .featured .content a:hover { border-bottom-color: #b80000; }
 
+        /* ====== شبکه خبری ====== */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -221,6 +157,7 @@
         }
         .news-card a:hover { border-bottom-color: #b80000; }
 
+        /* ====== فوتر ====== */
         footer {
             background: #1a1a1a;
             color: #ccc;
@@ -234,12 +171,13 @@
         footer .copy { margin-top: 12px; color: #888; font-size: 13px; }
 
         @media (max-width: 750px) {
+            header .container { flex-direction: column; text-align: center; }
+            nav { margin-top: 12px; }
+            nav a { margin: 0 6px; font-size: 13px; }
             .featured { flex-direction: column; }
             .featured img { max-width: 100%; }
             .featured .content h2 { font-size: 20px; }
             .news-grid { grid-template-columns: 1fr; }
-            .logo img { height: 30px; }
-            .menu-icon { width: 40px; height: 40px; left: 5px; top: 55%; }
         }
     </style>
 </head>
@@ -247,40 +185,44 @@
 
 <header>
     <div class="container">
-        <img src="https://cdn.imgurl.ir/uploads/f048976_.png" alt="Menu" class="menu-icon" onclick="toggleMenu(event)" />
         <div class="logo">
             <img src="https://cdn.imgurl.ir/uploads/b084814_InShot_20260901_135253984.png" alt="KBC News Logo" />
         </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">World</a>
+            <a href="#">Politics</a>
+            <a href="#">Economy</a>
+            <a href="#">Tech</a>
+            <a href="#">Sports</a>
+            <a href="#">Culture</a>
+        </nav>
     </div>
 </header>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<nav class="side-menu" id="sideMenu">
-    <div class="menu-title">Categories</div>
-    <a href="index.html">🏠 Home</a>
-    <a href="#">🌍 World</a>
-    <a href="#">🏛️ Politics</a>
-    <a href="#">💰 Economy</a>
-    <a href="#">💻 Tech</a>
-    <a href="#">⚽ Sports</a>
-    <a href="#">🎭 Culture</a>
-</nav>
-
 <main class="container">
 
+    <!-- ====== خبر ویژه (جدیدترین: آتش زیر خاکستر) ====== -->
     <section class="featured">
-        <img src="https://cdn.imgurl.ir/uploads/r049901_InShot_20261010_230834228.jpg" alt="End of Kobesh" />
+        <img src="https://cdn.imgurl.ir/uploads/s360434_.jpg" alt="Ash under Ash" />
         <div class="content">
             <span class="tag">Breaking News</span>
-            <h2>پایان عملیات کوبش؛ توافق تاریخی میان کوبشگران و رحمان</h2>
-            <p>پس از ۲۵۲ روز تنش و درگیری، سرانجام رحمان و کوبشگران با امضای توافقی رسمی، به این فصل پرتنش پایان دادند و فصل جدیدی در منطقه آغاز شد.</p>
-            <div style="color: #888; font-size: 13px; margin-top: 8px;">8 October 2026 — Moments ago</div>
-            <a href="Post3.html" style="display: inline-block; margin-top: 12px;">Read Full Story →</a>
+            <h2>آتش زیر خاکستر؛ تاکتیک مخفی کوبش چیست</h2>
+            <p>با وجود تنش‌های فراوان در منطقه، این‌بار تحرکات نظامی تیم کوبش بسیار محتاطانه و اصول‌گرایانه است، در عین حال تحرکات رحمان بسیار تهاجمی شده است.</p>
+            <div style="color: #888; font-size: 13px; margin-top: 8px;">28 October 2026 — Moments ago</div>
+            <a href="Post4.html" style="display: inline-block; margin-top: 12px;">Read Full Story →</a>
         </div>
     </section>
 
+    <!-- ====== شبکه خبری ====== -->
     <section class="news-grid">
+        <div class="news-card">
+            <img src="https://cdn.imgurl.ir/uploads/r049901_InShot_20261010_230834228.jpg" alt="End of Kobesh" />
+            <h3>پایان عملیات کوبش؛ توافق تاریخی میان کوبشگران و رحمان</h3>
+            <div class="date">8 October 2026</div>
+            <p>پس از ۲۵۲ روز تنش و درگیری، سرانجام رحمان و کوبشگران با امضای توافقی رسمی، به این فصل پرتنش پایان دادند.</p>
+            <a href="Post3.html">Read More →</a>
+        </div>
         <div class="news-card">
             <img src="https://cdn.imgurl.ir/uploads/x04750_InShot_20260919_180544407.jpg" alt="Red Alert" />
             <h3>وضعیت قرمز در هیاهوی آغاز سال تحصیلی</h3>
@@ -311,7 +253,6 @@
     />
 </div>
 
-<!-- ====== پیام کوچیک ====== -->
 <div id="shareToast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #b80000; color: #fff; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 20px rgba(184, 0, 0, 0.4); opacity: 0; transition: 0.4s ease; z-index: 9999; pointer-events: none; font-family: Tahoma;">
     ✅ Link copied! Share it with your friends
 </div>
@@ -331,19 +272,6 @@
 </footer>
 
 <script>
-    function toggleMenu(e) {
-        e.stopPropagation();
-        const menu = document.getElementById('sideMenu');
-        const overlay = document.getElementById('overlay');
-        if (menu.classList.contains('open')) { closeMenu(); }
-        else { menu.classList.add('open'); overlay.classList.add('show'); }
-    }
-    function closeMenu() {
-        document.getElementById('sideMenu').classList.remove('open');
-        document.getElementById('overlay').classList.remove('show');
-    }
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-
     function shareSite() {
         const url = window.location.origin;
         if (navigator.share) {
